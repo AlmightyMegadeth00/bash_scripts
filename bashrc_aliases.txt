@@ -1,0 +1,37 @@
+# search a specific file extention for text
+# example: logsearch .log Exception
+alias logsearch='logsearchfunction'
+
+logsearchhelp()
+{
+  echo ' '
+  echo 'Usage syntax:'
+  echo 'logsearch [.file_extention] [some_text]'
+  echo 'example: logsearch .log Exception '
+  echo ' '
+  echo 'logsearch requires the extension variable in the arugment.'
+  echo 'Did you spell it like .log, .text, or .file?'
+  echo ' '
+  echo ' '
+}
+
+logsearchfunction()
+{
+  extention=".log"
+  # check the first argument for a proper file extension
+  if [[ -n "$1" && $1 == .* ]]; then
+    extention=$1
+  else
+    echo "Warning: Invalid extension. using '.log'"
+  fi
+
+  if [ $1 = "help" ] || [ $1 = "--h" ]; then
+    logsearchhelp
+  else 
+    # needs a grep command here $extension and $2 is the string/pattern
+  fi
+}
+
+# git lg.. a graphical git log that shows the tree and branch tags with color
+# copy and paste this into terminal to enable 'git lg' alias
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
