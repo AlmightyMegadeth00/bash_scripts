@@ -1,0 +1,2 @@
+#!/bin/bash
+repo forall -c 'for r in `git remote`; do if [ $r = "vanir" ]; then NAME=`git remote -v | grep "vanir	git://github.com/VanirAOSP" | grep push | sed '\''s/vanir[ \t]*git:\/\/github.com\/VanirAOSP\///g'\'' | sed '\''s/[ \t\n]*(push)//g'\''`; if [ ! -e .git/hooks/commit-msg ]; then echo "SETTING UP CHANGEID HOOK FOR $NAME"; scp -p gerrit:hooks/commit-msg .git/hooks/ else echo "FUCK THAT REDUNDANT SHIT"; fi; fi; done'
